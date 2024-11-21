@@ -151,9 +151,11 @@ export default function Home() {
             </ScrollTrigger>
 
             <ScrollTrigger delay={0.9}>
-              <button className="bg-neutral-50 inline-block text-xl md:text-4xl font-bold p-5 md:p-7 rounded-full text-neutral-700 hover:bg-orange-300 hover:underline hover:rotate-1 transition-colors active:scale-[.98]">
-                Buy <span className="text-neutral-800">$</span>Nuggie<span className="text-neutral-800">Inu</span>
-              </button>
+              <a href="https://google.ca">
+                <button className="bg-neutral-50 inline-block text-xl md:text-4xl font-bold p-5 md:p-7 rounded-full text-neutral-700 hover:bg-orange-300 hover:underline hover:rotate-1 transition-colors active:scale-[.98]">
+                  Buy <span className="text-neutral-800">$</span>Nuggie<span className="text-neutral-800">Inu</span>
+                </button>
+              </a>
             </ScrollTrigger>
 
             {/* Music Player */}
