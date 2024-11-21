@@ -147,7 +147,7 @@ export default function Home() {
             </h1>
 
             <ScrollTrigger delay={0.6}>
-              <p className="text-orange-300 text-xl md:text-2xl font-bold">Join the Nuggie Inu fam today!!!</p>
+              <p className="text-orange-300 text-xl md:text-2xl font-bold">Join the Nuggie Inu fam today!!</p>
             </ScrollTrigger>
 
             <ScrollTrigger delay={0.9}>
