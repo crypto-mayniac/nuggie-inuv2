@@ -1,0 +1,27 @@
+# Ignore everything by default
+
+# Dependencies and other folders to ignore specifically
+/node_modules
+/.pnp
+.pnp.js
+
+# Testing
+/coverage
+
+# Next.js
+/.next/
+
+# Production
+/build
+
+# Misc
+.DS_Store
+
+# Debug logs
+npm-debug.log*
+
+# Local environment files
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
