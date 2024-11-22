@@ -10,6 +10,7 @@ import WhaleWanch from "/public/whale-wanch2.png";
 import CountUp from 'react-countup';
 import PaperHandsPoly from "/public/paper-hands-poly2.png";
 import { Play, StepBack, StepForward, Pause } from 'lucide-react';
+import NotificationListener from '../components/NotificationListener';
 import DiamondHandsSS from "/public/diamond-hands-ss2.png";
 import TwitterFeed from "/components/TwitterFeed";
 import TokenHolders from "/components/utils/TokenHolders";
@@ -102,6 +103,9 @@ export default function Home() {
         <title>Nuggie Inu - A Crypto Project You Can Sink Your Teeth Into</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
+
+      <NotificationListener />
 
       <main className="min-h-screen relative overflow-hidden">
         <nav className="z-10 w-full border-b-2 border-neutral-50 border-opacity-20 px-4 fixed backdrop-blur-xl z-30">

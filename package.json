@@ -17,7 +17,9 @@
     "react-countup": "^6.5.3",
     "react-dom": "18.2.0",
     "react-intersection-observer": "^9.13.1",
-    "react-twitter-embed": "^4.0.4"
+    "react-toastify": "^10.0.6",
+    "react-twitter-embed": "^4.0.4",
+    "socket.io-client": "^4.8.1"
   },
   "engines": {
     "node": ">=18"
