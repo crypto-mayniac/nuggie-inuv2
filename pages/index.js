@@ -5,14 +5,15 @@ import styles from '../styles/home.module.css';
 import Image from 'next/image';
 import Logo from "/public/logo-2.png";
 import Inu from "/public/inu-img.png";
-import HODLHoneyMustard from "/public/hodl-honey-mustard.png";
-import WhaleWanch from "/public/whale-wanch.png";
+import HODLHoneyMustard from "/public/hodl-honey-mustard2.png";
+import WhaleWanch from "/public/whale-wanch2.png";
 import CountUp from 'react-countup';
-import PaperHandsPoly from "/public/paper-hands-poly.png";
-import DiamondHandsSS from "/public/diamond-hands-ss.png";
+import PaperHandsPoly from "/public/paper-hands-poly2.png";
+import { Play, StepBack, StepForward, Pause } from 'lucide-react';
+import DiamondHandsSS from "/public/diamond-hands-ss2.png";
 import TwitterFeed from "/components/TwitterFeed";
 import TokenHolders from "/components/utils/TokenHolders";
-import FOMOBBQ from "/public/fomo-bbq.png";
+import FOMOBBQ from "/public/fomo-bbq2.png";
 
 const ScrollTrigger = ({ children, delay = 0 }) => {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.5 });
@@ -47,8 +48,7 @@ export default function Home() {
   const [progressVisible, setProgressVisible] = useState(false);
 
   const songs = [
-    { src: '/theme.mp3', title: 'Nuggie Inu Type', artist: 'Nuggie Inu' },
-    { src: 'hug-jug.mp3', title: 'Hug JugChug Jug With You', artist: 'Leviathan' },
+    { src: '/(Intro).wav', title: 'Nuggie Inu Theme', artist: 'Nuggie Inu' },
   ];
 
   useEffect(() => {
@@ -158,24 +158,28 @@ export default function Home() {
               </a>
             </ScrollTrigger>
 
-            {/* Music Player */}
-            <div className="mt-8 text-center">
-              <audio ref={audioRef} loop />
-              <div className="flex items-center justify-center gap-4">
-                <button onClick={prevSong}>⏮️</button>
-                <button onClick={playPauseHandler}>{isPlaying ? '⏸️' : '▶️'}</button>
-                <button onClick={nextSong}>⏭️</button>
+          </div>
+
+
+          {/* Music Player */}
+          <div className="text-center flex gap-5 fixed left-4 bottom-4 md:bottom-8 md:left-8 p-4 md:p-10 rounded-3xl z-50 bg-neutral-900 bg-opacity-50 backdrop-blur-lg items-center">
+            <audio ref={audioRef} loop />
+            <div className="flex items-center justify-center gap-4">
+              {/* <button disabled className="hover:bg-orange-400 rounded-full py-2 md:p-4 bg-transparent outline-2 outline outline-orange-400 text:neutral-50 text-orange-400 opacity-40 hover:text-neutral-900 transition-colors" onClick={prevSong}><StepBack /></button> */}
+              <button className="hover:bg-orange-400 active:scale-95 rounded-full p-2 md:p-4 bg-transparent border-2 border-orange-400 text:neutral-50 text-orange-400 hover:text-neutral-900 transition-colors" onClick={playPauseHandler}>{isPlaying ? <Pause /> : <Play />}</button>
+              {/* <button disabled className="hover:bg-orange-400 rounded-full py-2 md:p-4 bg-transparent outline-2 outline outline-orange-400 text:neutral-50 text-orange-400  opacity-40 hover:text-neutral-900 transition-colors" onClick={nextSong}><StepForward /></button> */}
+            </div>
+            <div>
+              <div className={`flex gap-1 justify-center music-player-bars items-center ${isPlaying ? 'playing' : ''}`}>
+                {[...Array(5)].map((_, i) => (
+                  <div key={i} style={{ height: `${6 + i * 3}px` }} />
+                ))}
               </div>
-              <div className="mt-4">
-                <div className={`flex gap-1 justify-center music-player-bars ${isPlaying ? 'playing' : ''}`}>
-                  {[...Array(5)].map((_, i) => (
-                    <div key={i} style={{ height: `${6 + i * 3}px` }} />
-                  ))}
-                </div>
-              </div>
-              <div className="text-white mt-2">
-                {songs[currentSong].title} by {songs[currentSong].artist}
-              </div>
+            </div>
+            <div className="text-white text-left mt-2">
+              <span>{songs[currentSong].title}</span>
+              <br></br>
+              <span className="text-xs uppercase tracking-widest opacity-70">{songs[currentSong].artist}</span>
             </div>
           </div>
 
@@ -243,8 +247,8 @@ export default function Home() {
         <div className="max-w-screen-xl mx-auto pt-8 md:py-16 relative z-10 pb-0">
           <ScrollTrigger delay={0}>
             <div className="flex flex-wrap px-4 items-center gap-10">
-              <h3 className="text-3xl md:text-5xl  font-bold text text-neutral-50">BUY <span className="text-neutral-300">THE</span> DIPS</h3>
-              <p className="text-neutral-400 font-bold text-1xl">No, you can’t literally buy THESE dips... but you can buy Nuggie Inu’s dips!</p>
+              <h3 className="text-3xl md:text-5xl  font-bold text text-neutral-50">EAT <span className="text-neutral-300">THE</span> DIPS</h3>
+              <p className="text-neutral-400 font-bold text-1xl">No, you can’t literally eat THESE dips... but you can eat Nuggie Inu’s dips!</p>
             </div>
           </ScrollTrigger>
 
