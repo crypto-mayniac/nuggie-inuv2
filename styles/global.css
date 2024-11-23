@@ -176,3 +176,59 @@
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
   /* Optional: Add a subtle shadow */
 }
+
+.floating {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+      transform: translateY(0);
+  }
+  50% {
+      transform: translateY(-5px);
+  }
+  100% {
+      transform: translateY(0);
+  }
+}
+
+.delay-200 {
+  animation-delay: 0.2s;
+}
+
+
+.delay-400 {
+  animation-delay: 0.3s;
+}
+
+.delay-600 {
+  animation-delay: 0.5s;
+}
+
+.delay-800 {
+  animation-delay: 0.7s;
+}
+
+.scrollDown {
+  animation: scrollDown 1s infinite ease-in-out;
+}
+
+@keyframes scrollDown {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(3px);
+  }
+  95% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}

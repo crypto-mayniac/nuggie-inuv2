@@ -114,18 +114,18 @@ export default function Home() {
               <div className="py-4">
                 <Image className="w-[130px] md:w-[169px] h-auto" src={Logo} alt="Nuggie Inu Logo" width={169} height={110.5} />
               </div>
-              <div className="flex gap-2 md:gap-8">
-                <button className="flex fill-cyan-400 text-[#A9FAFF] items-center gap-1 uppercase font-medium text-xs"><svg className="w-4" fill="#A9FAFF" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Telegram</title><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" /></svg>Telegram</button>
+              <div className="flex items-center gap-2 md:gap-8">
+                <a href="https://t.me/+i8ZjFaqWznFjYzUx" target="_blank"><button className="flex fill-cyan-400 hover:underline hover:opacity-70 transition-all text-[#A9FAFF] items-center gap-1 uppercase font-medium text-xs"><svg className="w-4" fill="#A9FAFF" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Telegram</title><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" /></svg>Telegram</button></a>
                 <button className="bg-white bg-opacity-10 p-2 px-4 rounded-2xl text-sm md:text-base font-bold text-neutral-50 hover:bg-opacity-100 transition-colors group hover:text-neutral-800"><span className="text-neutral-400 group-hover:text-neutral-700">Buy</span> $NuggieInu</button>
               </div>
             </div>
           </div>
         </nav>
 
-        <div className="max-w-screen-xl mx-auto h-dvh min-h-[450px] md:min-h-[860px] flex items-center overflow-hidden">
+        <div className="mx-auto h-dvh min-h-[450px] md:min-h-[860px] flex items-center overflow-hidden relative w-full">
           <div className="bg-blue-800 filter blur-3xl w-[800px] h-[800px] rounded-full absolute opacity-40 -translate-x-44"></div>
 
-          <div className="flex flex-col items-start gap-4 md:gap-12 z-10 relative ml-4 pt-40 px-4">
+          <div className="flex flex-col items-start gap-4 md:gap-12 z-10 relative pt-40 px-4 max-w-screen-xl mx-auto w-full">
             <h1 className="text-neutral-300 font-bold text-3xl md:text-6xl max-w-3xl leading-none md:tracking-tighter">
               <ScrollTrigger delay={0}>
                 <span className="text-4xl md:text-8xl -mb-5 md:-mb-8 block text-neutral-50">Finally...</span>
@@ -133,7 +133,7 @@ export default function Home() {
 
               <ScrollTrigger delay={0.3}>
                 <span>
-                  <br /> Finally, a Crypto Project You Can Sink Your Teeth Into{" "}
+                  <br /> A Crypto Project You Can Sink Your Teeth Into{" "}
                   <span
                     className="text-neutral-100 color-cycle"
                     style={{
@@ -161,6 +161,7 @@ export default function Home() {
                 </button>
               </a>
             </ScrollTrigger>
+
 
           </div>
 
@@ -197,6 +198,9 @@ export default function Home() {
           >
             <Image className="opacity-30 md:opacity-100 z-10 relative" src={Inu} alt="Nuggie Inu" width={507} height={597.5} />
           </div>
+
+          <div className="w-5 h-8 border-2 border-neutral-50 rounded-xl absolute justify-center bottom-4 left-1/2 transform -translate-x-1/2 hidden md:flex"><div className="h-2 w-[3px] top-1 relative rounded-full bg-neutral-50 scrollDown"></div></div>
+
         </div>
 
         <div className="border-b-2 border-neutral-50 border-opacity-20 w-full"></div>
@@ -258,33 +262,33 @@ export default function Home() {
 
           <div className="flex flex-wrap gap-12 mt-8 justify-around flex-wrap px-4">
             <ScrollTrigger delay={0}>
-              <div className="flex content-center flex-col items-center gap-3">
-                <Image src={HODLHoneyMustard} alt="HODL Honey Mustard" width={177} height={170} />
-                <p className="text-neutral-50 font-bold text-md md:text-lg w-[125px] md:md:w-[177px] text-center"><span className="text-yellow-400">HODL</span> Honey Mustard</p>
+              <div className="flex content-center flex-col items-center gap-3 -mx-7">
+                <Image className="w-[243px] -mb-6 floating  delay-400" src={FOMOBBQ} alt="Fomo BBQ" width={486} height={486} />
+                <p className="text-neutral-50 font-bold text-md md:text-lg w-[125px] md:w-[179px] text-center">FOMO<span className="text-orange-500"> BBQ</span></p>
               </div>
             </ScrollTrigger>
             <ScrollTrigger delay={0}>
-              <div className="flex content-center flex-col items-center gap-3">
-                <Image src={FOMOBBQ} alt="Fomo BBQ" width={177} height={170} />
-                <p className="text-neutral-50 font-bold text-md md:text-lg w-[125px] md:w-[177px] text-center">FOMO<span className="text-orange-500"> BBQ</span></p>
+              <div className="flex content-center flex-col items-center gap-3 -mx-7">
+                <Image className="w-[243px] -mb-6 floating delay-200" src={WhaleWanch} alt="Whale Wanch" width={486} height={486} />
+                <p className="text-neutral-50 font-bold text-md md:text-lg w-[125px] md:w-[179px] text-center"><span className="text-blue-200">Whale</span> Wanch</p>
               </div>
             </ScrollTrigger>
             <ScrollTrigger delay={0}>
-              <div className="flex content-center flex-col items-center gap-3">
-                <Image src={WhaleWanch} alt="Whale Wanch" width={177} height={170} />
-                <p className="text-neutral-50 font-bold text-md md:text-lg w-[125px] md:w-[177px] text-center"><span className="text-blue-200">Whale</span> Wanch</p>
+              <div className="flex content-center flex-col items-center gap-3 -mx-7">
+                <Image className="w-[243px] -mb-6 floating" src={HODLHoneyMustard} alt="HODL Honey Mustard" width={486} height={486} />
+                <p className="text-neutral-50 font-bold text-md md:text-lg w-[125px] md:w-[179px] text-center"><span className="text-yellow-400">HODL</span> Honey Mustard</p>
               </div>
             </ScrollTrigger>
             <ScrollTrigger delay={0}>
-              <div className="flex content-center flex-col items-center gap-3">
-                <Image src={PaperHandsPoly} alt="Paper Hands Polynesian" width={177} height={170} />
-                <p className="text-neutral-50 font-bold text-md md:text-lg w-[125px] md:w-[177px] text-center">Paper Hands<span className="text-[#FF3D00]"> Polynesian</span></p>
+              <div className="flex content-center flex-col items-center gap-3 -mx-7">
+                <Image className="w-[243px] -mb-6 floating delay-600" src={PaperHandsPoly} alt="Paper Hands Polynesian" width={486} height={486} />
+                <p className="text-neutral-50 font-bold text-md md:text-lg w-[125px] md:w-[179px] text-center">Paper Hands<span className="text-[#FF3D00]"> Polynesian</span></p>
               </div>
             </ScrollTrigger>
             <ScrollTrigger delay={0}>
-              <div className="flex content-center flex-col items-center gap-3">
-                <Image src={DiamondHandsSS} alt="Diamond Hands Secret Sauce" width={177} height={170} />
-                <p className="text-neutral-50 font-bold text-md md:text-lg w-[125px] md:w-[177px] text-center">Diamond Hands <span className="text-[#5CCEFF]"> Secret Sauce</span></p>
+              <div className="flex content-center flex-col items-center gap-3 -mx-7">
+                <Image className="w-[243px] -mb-6 floating delay-800" src={DiamondHandsSS} alt="Diamond Hands Secret Sauce" width={486} height={486} />
+                <p className="text-neutral-50 font-bold text-md md:text-lg w-[125px] md:w-[179px] text-center">Diamond Hands <span className="text-[#5CCEFF]"> Secret Sauce</span></p>
               </div>
             </ScrollTrigger>
           </div>
