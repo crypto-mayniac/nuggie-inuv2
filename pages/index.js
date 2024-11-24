@@ -13,7 +13,7 @@ import { Play, StepBack, StepForward, Pause } from 'lucide-react';
 import NotificationListener from '../components/NotificationListener';
 import DiamondHandsSS from "/public/diamond-hands-ss2.png";
 import TwitterFeed from "/components/TwitterFeed";
-import TokenHolders from "/components/utils/TokenHolders";
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 import FOMOBBQ from "/public/fomo-bbq2.png";
 
 const ScrollTrigger = ({ children, delay = 0 }) => {
@@ -37,13 +37,15 @@ const ScrollTrigger = ({ children, delay = 0 }) => {
 
 export default function Home() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(null);
   const [currentSong, setCurrentSong] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef(null);
-  const targetCount = 467;
-  const maxCount = 5000;
-  const progressPercentage = (targetCount / maxCount) * 100;
+  const [copied, setCopied] = useState(false);
+  const maxCount = 2000;
+  const progressPercentage = Math.min((count / maxCount) * 100, 100);
+
+  const contractAddress = "CHANGE CHANGE CHANGE";
 
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.5 });
   const [progressVisible, setProgressVisible] = useState(false);
@@ -85,12 +87,20 @@ export default function Home() {
 
   useEffect(() => {
     if (inView) {
-      setProgressVisible(true);
-
       const fetchData = async () => {
-        const result = await TokenHolders();
-        setCount(result);
-
+        try {
+          const response = await fetch('https://xawgeeapi-production.up.railway.app/api/holders');
+          const data = await response.json();
+          if (data.holdersCount !== undefined) {
+            console.log('what we get ? ', data.holdersCount)
+            setCount(data.holdersCount);
+            setProgressVisible(true);
+          } else {
+            console.error('Failed to fetch holders count');
+          }
+        } catch (error) {
+          console.error('Error fetching holders count:', error);
+        }
       };
 
       fetchData();
@@ -151,8 +161,35 @@ export default function Home() {
             </h1>
 
             <ScrollTrigger delay={0.6}>
-              <p className="text-orange-300 text-xl md:text-2xl font-bold">Join the Nuggie Inu fam today!!</p>
+              <p className="text-orange-300 text-xl md:text-2xl font-bold">Join the Nuggie Inu fam today!</p>
             </ScrollTrigger>
+
+            <div className="flex border-2 border w-full max-w-[650px] justify-between rounded-3xl p-3 border-opacity-15 border-neutral-50 items-center gap-2 overflow-hidden">
+              {/* Static Text */}
+              <p className="text-orange-400 font-bold">CA:</p>
+              <span
+                className="text-neutral-50 opacity-80 font-bold truncate"
+                style={{
+                  whiteSpace: 'nowrap',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  display: 'inline-block',
+                  maxWidth: 'calc(100% - 120px)', // Dynamically adjust to prevent overlap with the button
+                }}
+              >
+                {contractAddress}
+              </span>
+
+              {/* Copy Button */}
+              <CopyToClipboard text={contractAddress} onCopy={() => setCopied(true)}>
+                <button
+                  className="bg-white bg-opacity-10 p-2 px-4 rounded-2xl text-sm md:text-base font-bold text-neutral-50 hover:bg-opacity-100 transition-colors group hover:text-neutral-800"
+                >
+                  {copied ? 'Copied!' : 'Copy'}
+                </button>
+              </CopyToClipboard>
+            </div>
+
 
             <ScrollTrigger delay={0.9}>
               <a href="https://google.ca">
@@ -242,10 +279,16 @@ export default function Home() {
                 style={{ '--progress-percentage': `${progressPercentage}%`, background: 'linear-gradient(to right, transparent 0%, #E29C19 100%)' }}
               />
               <span
-                className={`absolute inset-0 flex items-center justify-center text-md md:text-2xl text-white z-10 font-bold tracking-widest ${progressVisible ? 'visible' : ''}`}
+                className={`absolute inset-0 flex items-center justify-center text-md md:text-2xl text-white z-10 font-bold tracking-widest ${progressVisible ? 'visible' : ''
+                  }`}
                 style={{ opacity: progressVisible ? 1 : 0, transition: 'opacity 0.5s ease' }}
               >
-                <CountUp duration={50} end={count} />/{maxCount} NUGGIE MUCHERS
+                {count !== null && progressVisible ? (
+                  <CountUp duration={2} end={count} />
+                ) : (
+                  `${count || 0}`
+                )}
+                /{maxCount} NUGGIE MUCHERS
               </span>
             </div>
           </div>

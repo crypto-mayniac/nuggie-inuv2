@@ -3,16 +3,17 @@ import { Poppins } from 'next/font/google'
 import type { AppProps } from 'next/app'
 
 const poppins = Poppins({
-    weight: ['400', '500', '600', '700'],  // specify the weights you need
-    subsets: ['latin'],  // specify the subsets you need
-  });
-  
+  weight: ['400', '500', '600', '700'],  // specify the weights you need
+  subsets: ['latin'],  // specify the subsets you need
+});
 
- 
+
+
 export default function App({ Component, pageProps }: AppProps) {
-    return (
-        <>
-        <style jsx global>{`
+  return (
+    <>
+      <link rel="icon" href="/favicon.ico" sizes="any" />
+      <style jsx global>{`
           html {
             font-family: ${poppins.style.fontFamily};
           }
@@ -20,7 +21,7 @@ export default function App({ Component, pageProps }: AppProps) {
             background: #222222;
           }
         `}</style>
-        <Component {...pageProps} />
-      </>
-      )
+      <Component {...pageProps} />
+    </>
+  )
 }
