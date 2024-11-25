@@ -44,8 +44,8 @@ export default function Home() {
   const [memberCount, setMemberCount] = useState(null);
   const audioRef = useRef(null);
   const [copied, setCopied] = useState(false);
-  const maxCount = 2000;
-  const progressPercentage = Math.min((count / maxCount) * 100, 100);
+  const maxCount = 120;
+  const progressPercentage = Math.min((memberCount / maxCount) * 100, 100);
 
   const contractAddress = "Coming Soon...";
 
@@ -191,8 +191,11 @@ export default function Home() {
 
               <div className="relative w-full bg-neutral-700 bg-opacity-60 backdrop-blur-lg h-10 rounded-full mt-4">
                 <div
-                  className={`absolute top-0 left-0 h-full border border-orange-400 rounded-full progress-bar ${progressVisible ? 'visible' : ''}`}
-                  style={{ '--progress-percentage': `${progressPercentage}%`, background: 'linear-gradient(to right, transparent 0%, #E29C19 100%)' }}
+                  className={`absolute top-0 left-0 h-full border rounded-full progress-bar rainbow-gradient ${progressVisible ? 'visible' : ''}`}
+                  style={{
+                    '--progress-percentage': `${progressPercentage}%`,
+                    width: `${progressPercentage}%`,
+                  }}
                 />
                 <span
                   className={`absolute inset-0 flex items-center justify-center text-md md:text-2xl text-white z-10 font-bold tracking-widest ${progressVisible ? 'visible' : ''
@@ -204,7 +207,7 @@ export default function Home() {
                   ) : (
                     `${memberCount || 0}`
                   )}
-                  /{120} MEMBERS UNTIL LAUNCH
+                  /{120} <span className="text-neutral-400 ml-2">TG MEMBERS UNTIL LAUNCH</span>
                 </span>
               </div>
             </div>

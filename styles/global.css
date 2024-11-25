@@ -139,6 +139,24 @@
   }
 }
 
+@keyframes rainbow {
+  from {
+    background-position: 0% 50%; /* Start position */
+  }
+  to {
+    background-position: 100% 50%; /* End position */
+  }
+}
+
+.rainbow-gradient {
+  background: linear-gradient(
+    90deg,
+    red, orange, yellow, green, blue, indigo, violet, red
+  );
+  background-size: 300% 100%; /* Ensures the gradient repeats smoothly */
+  animation: rainbow 8s linear infinite; /* Slower, smoother animation */
+}
+
 
 .custom-toast-container .Toastify__toast--info {
   background-color: #ff9800;
