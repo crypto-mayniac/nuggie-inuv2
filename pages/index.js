@@ -10,6 +10,7 @@ import WhaleWanch from "/public/whale-wanch2.png";
 import CountUp from 'react-countup';
 import PaperHandsPoly from "/public/paper-hands-poly2.png";
 import { Play, StepBack, StepForward, Pause } from 'lucide-react';
+import { Tooltip } from 'react-tooltip'
 import NotificationListener from '../components/NotificationListener';
 import DiamondHandsSS from "/public/diamond-hands-ss2.png";
 import TwitterFeed from "/components/TwitterFeed";
@@ -45,7 +46,7 @@ export default function Home() {
   const maxCount = 2000;
   const progressPercentage = Math.min((count / maxCount) * 100, 100);
 
-  const contractAddress = "CHANGE CHANGE CHANGE";
+  const contractAddress = "Coming Soon...";
 
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.5 });
   const [progressVisible, setProgressVisible] = useState(false);
@@ -126,11 +127,14 @@ export default function Home() {
               </div>
               <div className="flex items-center gap-2 md:gap-8">
                 <a href="https://t.me/+i8ZjFaqWznFjYzUx" target="_blank"><button className="flex fill-cyan-400 hover:underline hover:opacity-70 transition-all text-[#A9FAFF] items-center gap-1 uppercase font-medium text-xs"><svg className="w-4" fill="#A9FAFF" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Telegram</title><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" /></svg>Telegram</button></a>
-                <button className="bg-white bg-opacity-10 p-2 px-4 rounded-2xl text-sm md:text-base font-bold text-neutral-50 hover:bg-opacity-100 transition-colors group hover:text-neutral-800"><span className="text-neutral-400 group-hover:text-neutral-700">Buy</span> $NuggieInu</button>
+                <a className="relative z-10" data-tooltip-id="my-tooltip" data-tooltip-content="$NuggieInu has not launched yet! Join Telegram for updates!"><button className="bg-white bg-opacity-10 opacity-50 pointer-events-none disabled p-2 px-4 rounded-2xl text-sm md:text-base font-bold text-neutral-50 hover:bg-opacity-100 transition-colors group hover:text-neutral-800"><span className="text-neutral-400 group-hover:text-neutral-700">Buy</span> $NuggieInu</button></a>
               </div>
             </div>
           </div>
+          <Tooltip className="relative z-10" id="my-tooltip" />
+
         </nav>
+
 
         <div className="mx-auto h-dvh min-h-[450px] md:min-h-[860px] flex items-center overflow-hidden relative w-full">
           <div className="bg-blue-800 filter blur-3xl w-[800px] h-[800px] rounded-full absolute opacity-40 -translate-x-44"></div>
@@ -161,10 +165,10 @@ export default function Home() {
             </h1>
 
             <ScrollTrigger delay={0.6}>
-              <p className="text-orange-300 text-xl md:text-2xl font-bold">Join the Nuggie Inu fam today!</p>
+              <p className="text-orange-300 text-xl md:text-2xl font-bold">Launching at 200+ Telegram Members!</p>
             </ScrollTrigger>
 
-            <div className="flex border-2 border w-full max-w-[650px] justify-between rounded-3xl p-3 border-opacity-15 border-neutral-50 items-center gap-2 overflow-hidden">
+            <div className="flex border-2 border w-full max-w-[650px]  w-auto justify-between rounded-3xl p-3 border-opacity-15 border-neutral-50 items-center gap-2 overflow-hidden">
               {/* Static Text */}
               <p className="text-orange-400 font-bold">CA:</p>
               <span
@@ -183,7 +187,7 @@ export default function Home() {
               {/* Copy Button */}
               <CopyToClipboard text={contractAddress} onCopy={() => setCopied(true)}>
                 <button
-                  className="bg-white bg-opacity-10 p-2 px-4 rounded-2xl text-sm md:text-base font-bold text-neutral-50 hover:bg-opacity-100 transition-colors group hover:text-neutral-800"
+                  className="bg-white opacity-60 pointer-events-none bg-opacity-10 p-2 px-4 rounded-2xl text-sm md:text-base font-bold text-neutral-50 hover:bg-opacity-100 transition-colors group hover:text-neutral-800"
                 >
                   {copied ? 'Copied!' : 'Copy'}
                 </button>
@@ -192,9 +196,9 @@ export default function Home() {
 
 
             <ScrollTrigger delay={0.9}>
-              <a href="https://google.ca">
+              <a target="_blank" href="https://t.me/+i8ZjFaqWznFjYzUx">
                 <button className="bg-neutral-50 inline-block text-xl md:text-4xl font-bold p-5 md:p-7 rounded-full text-neutral-700 hover:bg-orange-300 hover:underline hover:rotate-1 transition-colors active:scale-[.98]">
-                  Buy <span className="text-neutral-800">$</span>Nuggie<span className="text-neutral-800">Inu</span>
+                  Join <span className="text-neutral-800"></span>Telegram!<span className="text-neutral-800"></span>
                 </button>
               </a>
             </ScrollTrigger>
@@ -284,7 +288,7 @@ export default function Home() {
                 style={{ opacity: progressVisible ? 1 : 0, transition: 'opacity 0.5s ease' }}
               >
                 {count !== null && progressVisible ? (
-                  <CountUp duration={2} end={count} />
+                  <CountUp duration={2} end={0} />
                 ) : (
                   `${count || 0}`
                 )}

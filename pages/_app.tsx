@@ -1,4 +1,5 @@
 import '../styles/global.css'
+import 'react-tooltip/dist/react-tooltip.css'
 import { Poppins } from 'next/font/google'
 import type { AppProps } from 'next/app'
 

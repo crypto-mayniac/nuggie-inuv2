@@ -38,7 +38,7 @@ const TwitterFeed = () => {
             {/* Twitter Timeline */}
             <a
                 className="twitter-timeline"
-                href="https://twitter.com/Bonk_Inu"
+                href="https://twitter.com/NuggieInu"
                 data-theme="dark" // Force dark mode
                 data-height="800"
                 data-width="100%" // Set width to 100% of the container
