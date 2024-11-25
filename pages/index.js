@@ -41,6 +41,7 @@ export default function Home() {
   const [count, setCount] = useState(null);
   const [currentSong, setCurrentSong] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [memberCount, setMemberCount] = useState(null);
   const audioRef = useRef(null);
   const [copied, setCopied] = useState(false);
   const maxCount = 2000;
@@ -85,6 +86,19 @@ export default function Home() {
     });
   };
 
+  async function fetchMemberCount() {
+    try {
+      const response = await fetch("https://tg-member-count-production.up.railway.app/member-count");
+      const data = await response.json();
+      setMemberCount(data.member_count);
+    } catch (error) {
+      console.error("Error fetching member count:", error);
+    }
+  }
+
+  useEffect(() => {
+    fetchMemberCount();
+  }, []);
 
   useEffect(() => {
     if (inView) {
@@ -139,7 +153,7 @@ export default function Home() {
         <div className="mx-auto h-dvh min-h-[450px] md:min-h-[860px] flex items-center overflow-hidden relative w-full">
           <div className="bg-blue-800 filter blur-3xl w-[800px] h-[800px] rounded-full absolute opacity-40 -translate-x-44"></div>
 
-          <div className="flex flex-col items-start gap-4 md:gap-12 z-10 relative pt-40 px-4 max-w-screen-xl mx-auto w-full">
+          <div className="flex flex-col items-start gap-4 md:gap-8 z-10 relative pt-40 px-4 max-w-screen-xl mx-auto w-full">
             <h1 className="text-neutral-300 font-bold text-3xl md:text-6xl max-w-3xl leading-none md:tracking-tighter">
               <ScrollTrigger delay={0}>
                 <span className="text-4xl md:text-8xl -mb-5 md:-mb-8 block text-neutral-50">Finally...</span>
@@ -164,12 +178,38 @@ export default function Home() {
               </ScrollTrigger>
             </h1>
 
-            <ScrollTrigger delay={0.6}>
-              <p className="text-orange-300 text-xl md:text-2xl font-bold">Launching at 200+ Telegram Members!</p>
-            </ScrollTrigger>
+            {/* <ScrollTrigger delay={0.6}>
+              <p className="text-orange-300 text-xl md:text-2xl font-bold">Launching at 120 Telegram Members! {memberCount}</p>
+            </ScrollTrigger> */}
 
-            <div className="flex border-2 border w-full max-w-[650px]  w-auto justify-between rounded-3xl p-3 border-opacity-15 border-neutral-50 items-center gap-2 overflow-hidden">
-              {/* Static Text */}
+            <div className="max-w-full w-full md:max-w-screen-xl mx-auto" ref={ref}>
+              <ScrollTrigger delay={0}>
+                <h4 className="text-3xl -mb-5 sm:text-3xl md:text-5xl  md:-mb-4 xl:-mb-8 md:text-4xl xl:text-6xl text-nowrap tracking-widest text-center text-neutral-50 opacity-15 font-bold w-full">
+                  THE NUGGIE METER!
+                </h4>
+              </ScrollTrigger>
+
+              <div className="relative w-full bg-neutral-700 bg-opacity-60 backdrop-blur-lg h-10 rounded-full mt-4">
+                <div
+                  className={`absolute top-0 left-0 h-full border border-orange-400 rounded-full progress-bar ${progressVisible ? 'visible' : ''}`}
+                  style={{ '--progress-percentage': `${progressPercentage}%`, background: 'linear-gradient(to right, transparent 0%, #E29C19 100%)' }}
+                />
+                <span
+                  className={`absolute inset-0 flex items-center justify-center text-md md:text-2xl text-white z-10 font-bold tracking-widest ${progressVisible ? 'visible' : ''
+                    }`}
+                  style={{ opacity: progressVisible ? 1 : 0, transition: 'opacity 0.5s ease' }}
+                >
+                  {count !== null && progressVisible ? (
+                    <CountUp duration={2} end={memberCount} />
+                  ) : (
+                    `${memberCount || 0}`
+                  )}
+                  /{120} MEMBERS UNTIL LAUNCH
+                </span>
+              </div>
+            </div>
+
+            {/* <div className="flex border-2 border w-full max-w-[650px]  w-auto justify-between rounded-3xl p-3 border-opacity-15 border-neutral-50 items-center gap-2 overflow-hidden">
               <p className="text-orange-400 font-bold">CA:</p>
               <span
                 className="text-neutral-50 opacity-80 font-bold truncate"
@@ -184,7 +224,6 @@ export default function Home() {
                 {contractAddress}
               </span>
 
-              {/* Copy Button */}
               <CopyToClipboard text={contractAddress} onCopy={() => setCopied(true)}>
                 <button
                   className="bg-white opacity-60 pointer-events-none bg-opacity-10 p-2 px-4 rounded-2xl text-sm md:text-base font-bold text-neutral-50 hover:bg-opacity-100 transition-colors group hover:text-neutral-800"
@@ -192,7 +231,7 @@ export default function Home() {
                   {copied ? 'Copied!' : 'Copy'}
                 </button>
               </CopyToClipboard>
-            </div>
+            </div> */}
 
 
             <ScrollTrigger delay={0.9}>
@@ -270,7 +309,7 @@ export default function Home() {
           </div>
 
           {/* Nuggie Meter Section */}
-          <div className="max-w-full w-full md:max-w-screen-xl mx-auto mt-8 md:mt-20" ref={ref}>
+          {/* <div className="max-w-full w-full md:max-w-screen-xl mx-auto mt-8 md:mt-20" ref={ref}>
             <ScrollTrigger delay={0}>
               <h4 className="text-3xl -mb-5 sm:text-3xl md:text-5xl  md:-mb-4 xl:-mb-8 md:text-6xl xl:text-8xl text-nowrap tracking-widest text-center text-neutral-50 opacity-15 font-bold w-full">
                 THE NUGGIE METER!
@@ -295,7 +334,7 @@ export default function Home() {
                 /{maxCount} NUGGIE MUCHERS
               </span>
             </div>
-          </div>
+          </div> */}
         </div>
 
         {/* Buy the Dips Section */}
