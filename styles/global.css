@@ -127,6 +127,13 @@
   animation-play-state: running;
 }
 
+.fixed {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
 @keyframes musicBars {
 
   0%,

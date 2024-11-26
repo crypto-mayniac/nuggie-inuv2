@@ -36,10 +36,32 @@ const ScrollTrigger = ({ children, delay = 0 }) => {
   );
 };
 
+
+const Modal = ({ onClose }) => (
+  <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50">
+    <div className="bg-gray-800 text-white p-6 rounded-lg shadow-lg relative w-9/12 m:w-2/5">
+      <button
+        className="absolute top-2 right-2 text-gray-400 hover:text-white text-lg"
+        onClick={onClose}
+      >
+        &times;
+      </button>
+      <h2 className="text-2xl font-bold mb-4">Nuggie Inu has <span className="text-orange-400 underline">NOT</span> launched yet!</h2>
+      <p className="text-gray-300">
+        Beware of fake scams and impersonating coins, an official announcement will be made on Telegram when we're live! <a className="text-blue-300 hover:underline" href="https://t.me/NuggieInuPortal">Telegram Link</a>
+      </p>
+      <button onClick={onClose} className="bg-neutral-50 mt-4 inline-block text-base font-bold md:p-3 rounded-full text-neutral-700 hover:bg-orange-300 hover:underline hover:rotate-1 transition-colors active:scale-[.98]">
+        OK Thanks!
+      </button>
+    </div>
+  </div >
+);
+
 export default function Home() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [count, setCount] = useState(null);
   const [currentSong, setCurrentSong] = useState(0);
+  const [showModal, setShowModal] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [memberCount, setMemberCount] = useState(null);
   const audioRef = useRef(null);
@@ -98,6 +120,7 @@ export default function Home() {
 
   useEffect(() => {
     fetchMemberCount();
+    setShowModal(true); // Show modal on page load
   }, []);
 
   useEffect(() => {
@@ -129,12 +152,13 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      {showModal && <Modal onClose={() => setShowModal(false)} />}
 
       <NotificationListener />
 
       <main className="min-h-screen relative overflow-hidden">
         <nav className="z-10 w-full border-b-2 border-neutral-50 border-opacity-20 px-4 fixed backdrop-blur-xl z-30">
-          <div className="max-w-screen-xl mx-auto">
+          <div className="max-w-screen-xl mx-auto w-full">
             <div className="flex justify-between w-full items-center">
               <div className="py-4">
                 <Image className="w-[130px] md:w-[169px] h-auto" src={Logo} alt="Nuggie Inu Logo" width={169} height={110.5} />
