@@ -50,7 +50,7 @@ const Modal = ({ onClose }) => (
       <p className="text-gray-300">
         Beware of fake scams and impersonating coins, an official announcement will be made on Telegram when we're live! <a className="text-blue-300 hover:underline" href="https://t.me/NuggieInuPortal">Telegram Link</a>
       </p>
-      <button onClick={onClose} className="bg-neutral-50 mt-4 inline-block text-base font-bold md:p-3 rounded-full text-neutral-700 hover:bg-orange-300 hover:underline hover:rotate-1 transition-colors active:scale-[.98]">
+      <button onClick={onClose} className="bg-neutral-50 mt-4 inline-block text-base font-bold p-3 rounded-full text-neutral-700 hover:bg-orange-300 hover:underline hover:rotate-1 transition-colors active:scale-[.98]">
         OK Thanks!
       </button>
     </div>
