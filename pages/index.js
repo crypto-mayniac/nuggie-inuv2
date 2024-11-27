@@ -66,7 +66,7 @@ export default function Home() {
   const [memberCount, setMemberCount] = useState(null);
   const audioRef = useRef(null);
   const [copied, setCopied] = useState(false);
-  const maxCount = 120;
+  const maxCount = 60;
   const progressPercentage = Math.min((memberCount / maxCount) * 100, 100);
 
   const contractAddress = "Coming Soon...";
@@ -231,7 +231,7 @@ export default function Home() {
                   ) : (
                     `${memberCount || 0}`
                   )}
-                  /{120} <span className="text-neutral-400 ml-2">TG MEMBERS UNTIL LAUNCH</span>
+                  /{60} <span className="text-neutral-400 ml-2">MEMBERS UNTIL LAUNCH DATE</span>
                 </span>
               </div>
             </div>
