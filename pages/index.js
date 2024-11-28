@@ -15,7 +15,10 @@ import NotificationListener from '../components/NotificationListener';
 import DiamondHandsSS from "/public/diamond-hands-ss2.png";
 import TwitterFeed from "/components/TwitterFeed";
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import Countdown from 'react-countdown';
+import { formatInTimeZone } from "date-fns-tz";
 import FOMOBBQ from "/public/fomo-bbq2.png";
+
 
 const ScrollTrigger = ({ children, delay = 0 }) => {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.5 });
@@ -36,6 +39,42 @@ const ScrollTrigger = ({ children, delay = 0 }) => {
   );
 };
 
+const TimerComponent = () => {
+  const targetTimezone = "America/Denver";
+  const targetTime = "2024-11-28T14:30:00"; // 4 PM Denver time
+
+  const [endTime, setEndTime] = useState(null);
+
+  useEffect(() => {
+    const formattedTargetTime = formatInTimeZone(targetTime, targetTimezone, "yyyy-MM-dd'T'HH:mm:ssXXX");
+    setEndTime(new Date(formattedTargetTime));
+  }, [targetTime, targetTimezone]);
+
+  if (!endTime) return null;
+
+  // Custom renderer to format the countdown display
+  const renderer = ({ hours, minutes, seconds, completed }) => {
+    if (completed) {
+      return <span>Time's up!</span>;
+    } else {
+      return (
+        <span className="text-orange-400">
+          {String(hours).padStart(2, "0")}:
+          {String(minutes).padStart(2, "0")}:
+          {String(seconds).padStart(2, "0")}
+        </span>
+      );
+    }
+  };
+
+  return (
+    <div>
+      <Countdown date={endTime} renderer={renderer} />
+      <span className="md:text-3xl text-xl ml-4 tracking-wide text-orange-300">Until Launch</span>
+    </div>
+  );
+};
+
 
 const Modal = ({ onClose }) => (
   <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50">
@@ -48,7 +87,7 @@ const Modal = ({ onClose }) => (
       </button>
       <h2 className="text-2xl font-bold mb-4">Nuggie Inu has <span className="text-orange-400 underline">NOT</span> launched yet!</h2>
       <p className="text-gray-300">
-        Beware of fake scams and impersonating coins, an official announcement will be made on Telegram when we're live! <a className="text-blue-300 hover:underline" href="https://t.me/NuggieInuPortal">Telegram Link</a>
+        Beware of fake and impersonating coins, an official announcement will be made on Telegram and here when we're live! <a className="text-blue-300 hover:underline" href="https://t.me/NuggieInuPortal">Telegram Link</a>
       </p>
       <button onClick={onClose} className="bg-neutral-50 mt-4 inline-block text-base font-bold p-3 rounded-full text-neutral-700 hover:bg-orange-300 hover:underline hover:rotate-1 transition-colors active:scale-[.98]">
         OK Thanks!
@@ -66,10 +105,15 @@ export default function Home() {
   const [memberCount, setMemberCount] = useState(null);
   const audioRef = useRef(null);
   const [copied, setCopied] = useState(false);
-  const maxCount = 60;
-  const progressPercentage = Math.min((memberCount / maxCount) * 100, 100);
+  const maxCount = 1000;
+  const progressPercentage = Math.min((count / maxCount) * 100, 100);
+
+  const specificTime = '2024-11-28 15:00:00'; // 4 PM Mountain Time
+  const targetTimezone = 'America/Denver';
+
 
   const contractAddress = "Coming Soon...";
+  const pumpLink = "http://www.google.ca";
 
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.5 });
   const [progressVisible, setProgressVisible] = useState(false);
@@ -165,7 +209,7 @@ export default function Home() {
               </div>
               <div className="flex items-center gap-2 md:gap-8">
                 <a href="https://t.me/+i8ZjFaqWznFjYzUx" target="_blank"><button className="flex fill-cyan-400 hover:underline hover:opacity-70 transition-all text-[#A9FAFF] items-center gap-1 uppercase font-medium text-xs"><svg className="w-4" fill="#A9FAFF" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Telegram</title><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" /></svg>Telegram</button></a>
-                <a className="relative z-10" data-tooltip-id="my-tooltip" data-tooltip-content="$NuggieInu has not launched yet! Join Telegram for updates!"><button className="bg-white bg-opacity-10 opacity-50 pointer-events-none disabled p-2 px-4 rounded-2xl text-sm md:text-base font-bold text-neutral-50 hover:bg-opacity-100 transition-colors group hover:text-neutral-800"><span className="text-neutral-400 group-hover:text-neutral-700">Buy</span> $NuggieInu</button></a>
+                <a className="relative z-10 opacity-35 pointer-events-none" href={pumpLink} target="_blank"><button className="bg-white bg-opacity-10  p-2 px-4 rounded-2xl text-sm md:text-base font-bold text-neutral-50 hover:bg-opacity-100 transition-colors group hover:text-neutral-800"><span className="text-neutral-400 group-hover:text-neutral-700">Buy</span> $NuggieInu</button></a>
               </div>
             </div>
           </div>
@@ -183,6 +227,7 @@ export default function Home() {
                 <span className="text-4xl md:text-8xl -mb-5 md:-mb-8 block text-neutral-50">Finally...</span>
               </ScrollTrigger>
 
+
               <ScrollTrigger delay={0.3}>
                 <span>
                   <br /> A Crypto Project You Can Sink Your Teeth Into{" "}
@@ -199,44 +244,21 @@ export default function Home() {
                     $NuggieInu
                   </span>
                 </span>
+
+                <div className="mt-10">
+                  <TimerComponent targetTime={specificTime} targetTimezone={targetTimezone} />
+                </div>
+
               </ScrollTrigger>
             </h1>
 
-            {/* <ScrollTrigger delay={0.6}>
-              <p className="text-orange-300 text-xl md:text-2xl font-bold">Launching at 120 Telegram Members! {memberCount}</p>
-            </ScrollTrigger> */}
+            <ScrollTrigger delay={0.6}>
+              {/* <p className="text-orange-300 text-xl md:text-2xl font-bold">Join the Nuggie Fam Today!</p> */}
+            </ScrollTrigger>
 
-            <div className="max-w-full w-full md:max-w-screen-xl mx-auto" ref={ref}>
-              <ScrollTrigger delay={0}>
-                <h4 className="text-3xl -mb-5 sm:text-3xl md:text-5xl  md:-mb-4 xl:-mb-8 md:text-4xl xl:text-6xl text-nowrap tracking-widest text-center text-neutral-50 opacity-15 font-bold w-full">
-                  THE NUGGIE METER!
-                </h4>
-              </ScrollTrigger>
 
-              <div className="relative w-full bg-neutral-700 bg-opacity-60 backdrop-blur-lg h-10 rounded-full mt-4">
-                <div
-                  className={`absolute top-0 left-0 h-full border rounded-full progress-bar rainbow-gradient ${progressVisible ? 'visible' : ''}`}
-                  style={{
-                    '--progress-percentage': `${progressPercentage}%`,
-                    width: `${progressPercentage}%`,
-                  }}
-                />
-                <span
-                  className={`absolute inset-0 flex items-center justify-center text-md md:text-2xl text-white z-10 font-bold tracking-widest ${progressVisible ? 'visible' : ''
-                    }`}
-                  style={{ opacity: progressVisible ? 1 : 0, transition: 'opacity 0.5s ease' }}
-                >
-                  {count !== null && progressVisible ? (
-                    <CountUp duration={2} end={memberCount} />
-                  ) : (
-                    `${memberCount || 0}`
-                  )}
-                  /{60} <span className="text-neutral-400 ml-2">MEMBERS UNTIL LAUNCH DATE</span>
-                </span>
-              </div>
-            </div>
 
-            {/* <div className="flex border-2 border w-full max-w-[650px]  w-auto justify-between rounded-3xl p-3 border-opacity-15 border-neutral-50 items-center gap-2 overflow-hidden">
+            <div className="flex border-2 border w-full max-w-[650px]  w-auto justify-between rounded-3xl p-3 border-opacity-15 border-neutral-50 items-center gap-2 overflow-hidden">
               <p className="text-orange-400 font-bold">CA:</p>
               <span
                 className="text-neutral-50 opacity-80 font-bold truncate"
@@ -253,18 +275,18 @@ export default function Home() {
 
               <CopyToClipboard text={contractAddress} onCopy={() => setCopied(true)}>
                 <button
-                  className="bg-white opacity-60 pointer-events-none bg-opacity-10 p-2 px-4 rounded-2xl text-sm md:text-base font-bold text-neutral-50 hover:bg-opacity-100 transition-colors group hover:text-neutral-800"
+                  className="bg-white bg-opacity-10 p-2 px-4 rounded-2xl text-sm md:text-base font-bold text-neutral-50 hover:bg-opacity-100 transition-colors group hover:text-neutral-800"
                 >
                   {copied ? 'Copied!' : 'Copy'}
                 </button>
               </CopyToClipboard>
-            </div> */}
+            </div>
 
 
             <ScrollTrigger delay={0.9}>
-              <a target="_blank" href="https://t.me/+i8ZjFaqWznFjYzUx">
-                <button className="bg-neutral-50 inline-block text-xl md:text-4xl font-bold p-5 md:p-7 rounded-full text-neutral-700 hover:bg-orange-300 hover:underline hover:rotate-1 transition-colors active:scale-[.98]">
-                  Join <span className="text-neutral-800"></span>Telegram!<span className="text-neutral-800"></span>
+              <a className="pointer-events-none" target="_blank" href={pumpLink}>
+                <button className="bg-neutral-50 opacity-20 inline-block text-xl md:text-4xl font-bold p-5 md:p-7 rounded-full text-neutral-700 hover:bg-orange-300 hover:underline hover:rotate-1 transition-colors active:scale-[.98]">
+                  Buy <span className="text-neutral-800"></span>Nuggie<span className="text-neutral-800"> Inu!</span>
                 </button>
               </a>
             </ScrollTrigger>
@@ -336,17 +358,20 @@ export default function Home() {
           </div>
 
           {/* Nuggie Meter Section */}
-          {/* <div className="max-w-full w-full md:max-w-screen-xl mx-auto mt-8 md:mt-20" ref={ref}>
+          <div className="max-w-full w-full md:max-w-screen-xl mx-auto mt-14" ref={ref}>
             <ScrollTrigger delay={0}>
-              <h4 className="text-3xl -mb-5 sm:text-3xl md:text-5xl  md:-mb-4 xl:-mb-8 md:text-6xl xl:text-8xl text-nowrap tracking-widest text-center text-neutral-50 opacity-15 font-bold w-full">
+              <h4 className="text-3xl -mb-5 sm:text-3xl md:text-6xl  md:-mb-4 xl:-mb-8 md:text-6xl xl:text-8xl text-nowrap tracking-widest text-center text-neutral-50 opacity-15 font-bold w-full">
                 THE NUGGIE METER!
               </h4>
             </ScrollTrigger>
 
-            <div className="relative w-full bg-neutral-700 h-10 rounded-full mt-4">
+            <div className="relative w-full bg-neutral-700 bg-opacity-60 backdrop-blur-lg h-10 rounded-full mt-4">
               <div
-                className={`absolute top-0 left-0 h-full border border-orange-400 rounded-full progress-bar ${progressVisible ? 'visible' : ''}`}
-                style={{ '--progress-percentage': `${progressPercentage}%`, background: 'linear-gradient(to right, transparent 0%, #E29C19 100%)' }}
+                className={`absolute top-0 left-0 h-full border rounded-full progress-bar rainbow-gradient ${progressVisible ? 'visible' : ''}`}
+                style={{
+                  '--progress-percentage': `${progressPercentage}%`,
+                  width: `${progressPercentage}%`,
+                }}
               />
               <span
                 className={`absolute inset-0 flex items-center justify-center text-md md:text-2xl text-white z-10 font-bold tracking-widest ${progressVisible ? 'visible' : ''
@@ -358,10 +383,13 @@ export default function Home() {
                 ) : (
                   `${count || 0}`
                 )}
-                /{maxCount} NUGGIE MUCHERS
+                /{maxCount} <span className="text-neutral-400 ml-2">NUGGIE MUNCHERS</span>
               </span>
             </div>
-          </div> */}
+          </div>
+          <p className="text-neutral-400 opacity-35 text-right w-full mt-2
+          ">NuggieInu Unique Holders...</p>
+
         </div>
 
         {/* Buy the Dips Section */}
@@ -405,6 +433,32 @@ export default function Home() {
               </div>
             </ScrollTrigger>
           </div>
+
+          {/* <div className="mt-24 px-4 relative">
+            <div className="bg-yellow-800 filter left-1/2 top-0 -translate-x-1/2  blur-3xl w-[800px] h-[800px] rounded-full absolute opacity-40"></div>
+            <h3 className="text-3xl md:text-5xl font-bold text text-neutral-50 mb-3 z-10 relative">HOW TO <span className="text-neutral-300">BUY?</span></h3>
+            <div className="z-10 relative flex gap-2 flex-wrap">
+              <div className="rounded-2xl border w-1/4 bg-neutral-50 bg-opacity-10 border-neutral-50 border-opacity-20 backdrop-blur-xl p-5">
+                <div className="text-orange-400 font-bold">1. Install Wallet</div>
+                <p className="text-neutral-300">Download a wallet that supports the Solana Blockchain, such as Phantom, or Solflare.</p>
+              </div>
+
+              <div className="rounded-2xl border  w-1/4 bg-neutral-50 bg-opacity-10 border-neutral-50 border-opacity-20 backdrop-blur-xl p-5">
+                <div className="text-orange-400 font-bold">2. Get some Sol</div>
+                <p className="text-neutral-300">Buy some Sol</p>
+              </div>
+
+              <div className="rounded-2xl border  w-1/4 bg-neutral-50 bg-opacity-10 border-neutral-50 border-opacity-20 backdrop-blur-xl p-5">
+                <div className="text-orange-400 font-bold">3. Connect to Pump.fun</div>
+                <p className="text-neutral-300">Connect to Pump.fun using your newly created wallet</p>
+              </div>
+
+              <div className="rounded-2xl border  w-1/4 bg-neutral-50 bg-opacity-10 border-neutral-50 border-opacity-20 backdrop-blur-xl p-5">
+                <div className="text-orange-400 font-bold">4. Buy $Nuggie</div>
+                <p className="text-neutral-300">Buy some Nuggie Inu!</p>
+              </div>
+            </div>
+          </div> */}
 
 
           <div className="mt-24 px-4 relative">
