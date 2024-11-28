@@ -85,12 +85,12 @@ const Modal = ({ onClose }) => (
       >
         &times;
       </button>
-      <h2 className="text-2xl font-bold mb-4">Nuggie Inu has <span className="text-orange-400 underline">NOT</span> launched yet!</h2>
+      <h2 className="text-2xl md: text-4xl font-bold mb-4">WE'RE <span className="text-orange-400 underline">LIVE</span></h2>
       <p className="text-gray-300">
-        Beware of fake and impersonating coins, an official announcement will be made on Telegram and here when we're live! <a className="text-blue-300 hover:underline" href="https://t.me/NuggieInuPortal">Telegram Link</a>
+        Beware of fake and impersonating coins, the official Nuggie Inu is here: <a className="text-blue-300 hover:underline" href="https://t.me/NuggieInuPortal">Nuggie Inu</a>
       </p>
       <button onClick={onClose} className="bg-neutral-50 mt-4 inline-block text-base font-bold p-3 rounded-full text-neutral-700 hover:bg-orange-300 hover:underline hover:rotate-1 transition-colors active:scale-[.98]">
-        OK Thanks!
+        OK!!!
       </button>
     </div>
   </div >
@@ -112,8 +112,8 @@ export default function Home() {
   const targetTimezone = 'America/Denver';
 
 
-  const contractAddress = "Coming Soon...";
-  const pumpLink = "http://www.google.ca";
+  const contractAddress = "G7rdEiybVyQVnFr7mCjnYCKFfieALuAGV4rBBsMCpump";
+  const pumpLink = "https://pump.fun/coin/G7rdEiybVyQVnFr7mCjnYCKFfieALuAGV4rBBsMCpump";
 
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.5 });
   const [progressVisible, setProgressVisible] = useState(false);
@@ -209,7 +209,7 @@ export default function Home() {
               </div>
               <div className="flex items-center gap-2 md:gap-8">
                 <a href="https://t.me/+i8ZjFaqWznFjYzUx" target="_blank"><button className="flex fill-cyan-400 hover:underline hover:opacity-70 transition-all text-[#A9FAFF] items-center gap-1 uppercase font-medium text-xs"><svg className="w-4" fill="#A9FAFF" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Telegram</title><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" /></svg>Telegram</button></a>
-                <a className="relative z-10 opacity-35 pointer-events-none" href={pumpLink} target="_blank"><button className="bg-white bg-opacity-10  p-2 px-4 rounded-2xl text-sm md:text-base font-bold text-neutral-50 hover:bg-opacity-100 transition-colors group hover:text-neutral-800"><span className="text-neutral-400 group-hover:text-neutral-700">Buy</span> $NuggieInu</button></a>
+                <a className="relative z-10" href={pumpLink} target="_blank"><button className="bg-white bg-opacity-10  p-2 px-4 rounded-2xl text-sm md:text-base font-bold text-neutral-50 hover:bg-opacity-100 transition-colors group hover:text-neutral-800"><span className="text-neutral-400 group-hover:text-neutral-700">Buy</span> Nuggie Inu</button></a>
               </div>
             </div>
           </div>
@@ -231,6 +231,7 @@ export default function Home() {
               <ScrollTrigger delay={0.3}>
                 <span>
                   <br /> A Crypto Project You Can Sink Your Teeth Into{" "}
+                  <br></br>
                   <span
                     className="text-neutral-100 color-cycle"
                     style={{
@@ -241,19 +242,16 @@ export default function Home() {
                       transition: "transform 0.2s ease-out",
                     }}
                   >
-                    $NuggieInu
+                    Nuggie Inu
                   </span>
                 </span>
 
-                <div className="mt-10">
-                  <TimerComponent targetTime={specificTime} targetTimezone={targetTimezone} />
-                </div>
 
               </ScrollTrigger>
             </h1>
 
             <ScrollTrigger delay={0.6}>
-              {/* <p className="text-orange-300 text-xl md:text-2xl font-bold">Join the Nuggie Fam Today!</p> */}
+              <p className="text-orange-300 text-xl md:text-2xl font-bold">We're Live!</p>
             </ScrollTrigger>
 
 
@@ -284,8 +282,8 @@ export default function Home() {
 
 
             <ScrollTrigger delay={0.9}>
-              <a className="pointer-events-none" target="_blank" href={pumpLink}>
-                <button className="bg-neutral-50 opacity-20 inline-block text-xl md:text-4xl font-bold p-5 md:p-7 rounded-full text-neutral-700 hover:bg-orange-300 hover:underline hover:rotate-1 transition-colors active:scale-[.98]">
+              <a className="" target="_blank" href={pumpLink}>
+                <button className="bg-neutral-50 inline-block text-xl md:text-4xl font-bold p-5 md:p-7 rounded-full text-neutral-700 hover:bg-orange-300 hover:underline hover:rotate-1 transition-colors active:scale-[.98]">
                   Buy <span className="text-neutral-800"></span>Nuggie<span className="text-neutral-800"> Inu!</span>
                 </button>
               </a>
@@ -434,31 +432,31 @@ export default function Home() {
             </ScrollTrigger>
           </div>
 
-          {/* <div className="mt-24 px-4 relative">
-            <div className="bg-yellow-800 filter left-1/2 top-0 -translate-x-1/2  blur-3xl w-[800px] h-[800px] rounded-full absolute opacity-40"></div>
+          <div className="mt-24 px-4 relative">
+            <div className="bg-yellow-800 filter left-1/2 top-0 -translate-x-1/2 blur-3xl w-[800px] h-[800px] rounded-full absolute opacity-40"></div>
             <h3 className="text-3xl md:text-5xl font-bold text text-neutral-50 mb-3 z-10 relative">HOW TO <span className="text-neutral-300">BUY?</span></h3>
-            <div className="z-10 relative flex gap-2 flex-wrap">
-              <div className="rounded-2xl border w-1/4 bg-neutral-50 bg-opacity-10 border-neutral-50 border-opacity-20 backdrop-blur-xl p-5">
+            <div className="z-10 relative grid grid-cols-1 md:grid-cols-4 gap-4">
+              <div className="rounded-2xl border bg-neutral-50 bg-opacity-10 border-neutral-50 border-opacity-20 backdrop-blur-xl p-5">
                 <div className="text-orange-400 font-bold">1. Install Wallet</div>
                 <p className="text-neutral-300">Download a wallet that supports the Solana Blockchain, such as Phantom, or Solflare.</p>
               </div>
 
-              <div className="rounded-2xl border  w-1/4 bg-neutral-50 bg-opacity-10 border-neutral-50 border-opacity-20 backdrop-blur-xl p-5">
+              <div className="rounded-2xl border bg-neutral-50 bg-opacity-10 border-neutral-50 border-opacity-20 backdrop-blur-xl p-5">
                 <div className="text-orange-400 font-bold">2. Get some Sol</div>
                 <p className="text-neutral-300">Buy some Sol</p>
               </div>
 
-              <div className="rounded-2xl border  w-1/4 bg-neutral-50 bg-opacity-10 border-neutral-50 border-opacity-20 backdrop-blur-xl p-5">
+              <div className="rounded-2xl border bg-neutral-50 bg-opacity-10 border-neutral-50 border-opacity-20 backdrop-blur-xl p-5">
                 <div className="text-orange-400 font-bold">3. Connect to Pump.fun</div>
                 <p className="text-neutral-300">Connect to Pump.fun using your newly created wallet</p>
               </div>
 
-              <div className="rounded-2xl border  w-1/4 bg-neutral-50 bg-opacity-10 border-neutral-50 border-opacity-20 backdrop-blur-xl p-5">
-                <div className="text-orange-400 font-bold">4. Buy $Nuggie</div>
+              <div className="rounded-2xl border bg-neutral-50 bg-opacity-10 border-neutral-50 border-opacity-20 backdrop-blur-xl p-5">
+                <div className="text-orange-400 font-bold">4. Buy Nuggie Inu</div>
                 <p className="text-neutral-300">Buy some Nuggie Inu!</p>
               </div>
             </div>
-          </div> */}
+          </div>
 
 
           <div className="mt-24 px-4 relative">
