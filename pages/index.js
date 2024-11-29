@@ -377,7 +377,7 @@ export default function Home() {
                 style={{ opacity: progressVisible ? 1 : 0, transition: 'opacity 0.5s ease' }}
               >
                 {count !== null && progressVisible ? (
-                  <CountUp duration={2} end={0} />
+                  <CountUp duration={2} end={count} />
                 ) : (
                   `${count || 0}`
                 )}
