@@ -162,10 +162,10 @@ export default function Home() {
     }
   }
 
-  useEffect(() => {
-    fetchMemberCount();
-    setShowModal(true); // Show modal on page load
-  }, []);
+  // useEffect(() => {
+  //   fetchMemberCount();
+  //   setShowModal(true); // Show modal on page load
+  // }, []);
 
   useEffect(() => {
     if (inView) {
